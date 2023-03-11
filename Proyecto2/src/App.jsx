@@ -11,15 +11,15 @@ function App() {
   function tictactoe(e) {
     console.log(e.target.classList.length);
 
-    if (e.target.classList.length !== 8) {
+    if (e.target.classList.length === 7) {
       if (state % 2 === 0) {
         e.target.value = 'X';
         e.target.classList.add('check');
-        e.target.classList.add('text-red');
+        e.target.classList.add('text-red-600');
       } else {
         e.target.value = 'O';
         e.target.classList.add('check');
-        e.target.classList.add('text-green');
+        e.target.classList.add('text-green-600');
       }
     }
 
@@ -49,7 +49,7 @@ function App() {
       <div className=" bg-slate-700 h-screen flex justify-center items-center flex-col">
         <h1 id="acabado" className="text-xl text-white mb-10"></h1>
         <form>
-          <table className=" table-fixed text-sm text-left text-gray-500  dark:text-gray-400">
+          <table className=" table-fixed text-sm text-left">
             <tbody>
               <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                 <td className="cursor-pointer">
