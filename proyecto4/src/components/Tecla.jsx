@@ -1,10 +1,4 @@
-export default function Tecla({ nombre }) {
-  // listenerKey();
-
-  // function listenerKey() {
-  //   document.addEventListener('keydown', audioKey);
-  // }
-
+export default function Tecla({ nombre, key }) {
   function selectorAudio() {
     let ruta = '';
     if (nombre === 'A') {
@@ -42,7 +36,7 @@ export default function Tecla({ nombre }) {
 
     let audio = new Audio(rutaKey);
     audio.play();
-  }  
+  }
 
   return (
     <button

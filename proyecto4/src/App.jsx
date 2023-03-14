@@ -1,14 +1,38 @@
 import './App.css';
 import Tecla from './components/Tecla';
+import { useEffect } from 'react';
 
 function App() {
-  listener();
-  function listener() {
-    document.addEventListener('keydown', audioKey);
-  }
+  let key = '';
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      key = event.key;
+      audioKey(key);
+    };
+    window.addEventListener('keydown', handleKeyPress);
 
-  function audioKey(event) {
-    console.log(event.key);
+    // limpiar el eventListener en la función de limpieza del efecto
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
+
+  function audioKey(key) {
+    let rutaKey = '';
+    if (key === 'a') {
+      rutaKey = '../../public/sound/piano-a_A_major.wav';
+    } else if (key === 's') {
+      rutaKey = '../../public/sound/piano-b_B_major.wav';
+    } else if (key === 'd') {
+      rutaKey = '../../public/sound/piano-bb_AS_major.wav';
+    } else if (key === 'f') {
+      rutaKey = '../../public/sound/piano-e_E_major.wav';
+    } else if (key === 'g') {
+      rutaKey = '../../public/sound/piano-f_F_major.wav';
+    }
+
+    let audio = new Audio(rutaKey);
+    audio.play();
   }
 
   return (
@@ -19,6 +43,7 @@ function App() {
         </h1>
         <div id="piano" className="flex justify-center items-center">
           <Tecla nombre="A" />
+          {key === 'a' ? <Tecla nombre="A" /> : null}
           <Tecla nombre="B" />
           <Tecla nombre="AS" />
           <Tecla nombre="E" />
